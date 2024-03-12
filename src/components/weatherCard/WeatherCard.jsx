@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './weather.css';
 import moment from 'moment';
+import { toast } from 'react-toastify';
 import Loader from '../loader/loader';
 
 const WeatherBlock = ({ date, temp, minTemp, maxTemp, pressure, humidity }) => {
@@ -43,6 +44,7 @@ const WeatherBlock = ({ date, temp, minTemp, maxTemp, pressure, humidity }) => {
 const WeatherTable = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [weatherData, setWeatherData] = useState(null);
+  const [cityInfo, setCityInfo] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // useEffect(() => {
@@ -74,6 +76,7 @@ const WeatherTable = () => {
 
       if (!response.ok) {
         setLoading(false);
+        toast.warning('Somthing went Worng Please try again!');
         throw new Error('Failed to fetch data');
       }
 
@@ -84,6 +87,7 @@ const WeatherTable = () => {
       setWeatherData(uniqueData);
       setLoading(false);
     } catch (error) {
+      toast.warning('Somthing went Worng Please try again!');
       setLoading(false);
     } finally {
       setLoading(false);
@@ -113,12 +117,15 @@ const WeatherTable = () => {
         `https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&appid=${'1635890035cbba097fd5c26c8ea672a1'}`
       );
       if (!response.ok) {
+        toast.warning('Unable to find City!');
         throw new Error('Failed to fetch data');
       }
       const data = await response.json();
       setLoading(false);
+      setCityInfo(data);
       fetchData(data.coord.lat, data.coord.lon);
     } catch (error) {
+      toast.warning('Unable to find City!');
       setLoading(false);
     } finally {
       setLoading(false);
@@ -129,7 +136,7 @@ const WeatherTable = () => {
     <>
       <Loader loading={loading} />
       <div>
-        <div className="heading">Weather in Your<span className="accent">City</span></div>
+        <div className="heading">Weather in <span className="accent">{cityInfo?.name ||' Your City'}</span></div>
         <div className="search-container">
           <input
             type="text"
