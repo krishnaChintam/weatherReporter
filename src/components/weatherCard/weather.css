@@ -1,0 +1,123 @@
+.text-center {
+    text-align: center;
+  }
+  
+  table {
+    border: 1px solid #b3adad;
+    border-collapse: collapse;
+    padding: 5px;
+    width: 100%;
+  }
+  
+  table th {
+    border: 1px solid #b3adad;
+    padding: 5px;
+    background: #f0f0f0;
+    color: #313030;
+  }
+  
+  table td {
+    border: 1px solid #b3adad;
+    text-align: center;
+    padding: 5px;
+    background: #ffffff;
+    color: #313030;
+  }
+  
+  table thead th {
+    background-color: orange;
+  }
+  
+  .block {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .block-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    border: 1px solid orange;
+    padding: 5px;
+    margin-right: 10px;
+    border-radius: 5px;
+    width: calc(50% - 20px); /* Adjust width with some gap on both sides */
+    max-width: 300px; /* Set max-width to prevent stretching on larger screens */
+  }
+  
+  .search-button {
+    border: none;
+    background-color: orange;
+    color: white;
+    padding: 8px 0; /* Adjust padding */
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: calc(50% - 20px); /* Adjust width with some gap on both sides */
+    max-width: 150px; /* Set max-width to prevent stretching on larger screens */
+  }
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 36px;
+    color: orange;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .search-button::after {
+    content: "?";
+  }
+  
+  .search-button:hover {
+    background-color: darkorange;
+  }
+  
+  @media (max-width: 767px) {
+    .block {
+      flex-basis: calc(100% - 20px);
+    }
+  
+    .heading {
+      font-size: 24px;
+    }
+  
+    .search-input {
+      margin: 0 10px 10px 10px; /* Add margin to all sides */
+      width: calc(100% - 20px); /* Adjust width with some gap on both sides */
+    }
+  
+    .search-button {
+      margin: 0 10px 10px 10px; /* Add margin to all sides */
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 991px) {
+    .block {
+      flex-basis: calc(50% - 20px); /* Show 2 cards per row for tablets */
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .block {
+      flex-basis: calc(33.333% - 20px); /* Show 3 cards per row for larger screens */
+    }
+  
+    .block-section {
+      justify-content: flex-start; /* Align cards to start on larger screens */
+      flex-wrap: nowrap; /* Ensure cards remain on the same line */
+      overflow-x: auto; /* Enable horizontal scrolling if necessary */
+    }
+  }
+  
